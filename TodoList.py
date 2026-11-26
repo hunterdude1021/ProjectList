@@ -23,6 +23,9 @@ class app(customtkinter.CTk):
         self.add_button = customtkinter.CTkButton(self, text="Add Task", command=self.add_task)
         self.add_button.pack(pady=10)
 
+        self.delete_entry = customtkinter.CTkEntry(self, placeholder_text="Enter task number")
+        self.delete_entry.pack(pady=10)
+
         self.delete_button = customtkinter.CTkButton(self, text="Delete Task", command=self.delete_task)
         self.delete_button.pack(pady=10)
 
@@ -41,12 +44,24 @@ class app(customtkinter.CTk):
 
     # Need to make more easier to tell what is being deleted and what to pick is deleted
     def delete_task(self):
-        line = int(self.task_textbox.index(customtkinter.INSERT).split('.')[0])
-        index = line - 1
-        if 0 <= index < len(self.tasks):
-            del self.tasks[index]
-            self.save_tasks()
-            self.refresh_tasks()
+       text = self.delete_entry.get().strip()
+
+       if not text.isdigit():
+           print("Please enter a valid task number to delete.")
+           return
+       
+       number = int(text)
+       index = number - 1
+
+       if not (0 <= index < len(self.tasks)):
+           print(f"No task numbered {number}.")
+           return
+
+       del self.tasks[index]
+       self.save_tasks()
+       self.refresh_tasks()
+       self.delete_entry.delete(0, "END")
+   
 
     def refresh_tasks(self):
         self.task_textbox.delete("1.0", customtkinter.END)
