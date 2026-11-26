@@ -27,3 +27,5 @@ while True:
         if 1 <= task_number <= len(tasks):
             removed_task = tasks.pop(task_number - 1)
             print(f'Task "{removed_task}" removed')
+        else:
+            print('Invalid')
