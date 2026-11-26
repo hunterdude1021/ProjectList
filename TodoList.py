@@ -22,3 +22,8 @@ while True:
     elif choice == "3":
         for i, task in enumerate(tasks, start=1):
             print(f"{i}. {task}")
+
+        task_number = int(input('Enter the number of the task to remove: '))
+        if 1 <= task_number <= len(tasks):
+            removed_task = tasks.pop(task_number - 1)
+            print(f'Task "{removed_task}" removed')
