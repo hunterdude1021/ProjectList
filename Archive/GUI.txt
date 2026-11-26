@@ -1,0 +1,16 @@
+
+{name}, Hello gui thingy
+    def greet():
+    name = entry.get()
+    label.configure(text=f"Hello, {name}!")
+
+    app = customtkinter.CTk()
+    app.title('Todo List')
+    app.geometry('360x180')
+
+    entry = customtkinter.CTkEntry(app, placeholder_text="Your name")
+    entry.grid(row=0, column=0, padx=20, pady=(20, 10), sticky="ew")
+    button = customtkinter.CTkButton(app, text="Say hello", command=greet)
+    button.grid(row=1, column=0, padx=20, pady=10, sticky="ew")
+    label = customtkinter.CTkLabel(app, text="")
+    label.grid(row=2, column=0, padx=20, pady=(10, 20))
